@@ -203,29 +203,34 @@ function playEvolutionAnimation() {
   ecomonEmoji.classList.add("evolve");
 }
 
-/**
- * 환경 실천 버튼 기능
- *
- * TODO:
- * 각 환경 행동 버튼을 눌렀을 때 다음 기능을 구현하세요.
- *
- * 1. 누른 버튼의 data-action 값을 가져옵니다.
- * 2. 누른 버튼의 data-points 값을 숫자로 가져옵니다.
- * 3. 행동 전 에코몬 단계 번호를 저장합니다.
- * 4. ecoScore에 점수를 더합니다.
- * 5. actionCount를 1 증가시킵니다.
- * 6. records 배열의 맨 앞에 행동과 점수를 추가합니다.
- * 7. render()를 실행합니다.
- * 8. 완료 안내 문구를 보여 줍니다.
- * 9. 단계가 바뀌면 진화 애니메이션을 실행합니다.
- * 10. 단계가 바뀌지 않으면 점프 애니메이션을 실행합니다.
- */
 actionButtons.forEach(function (button) {
   button.addEventListener("click", function () {
-    statusMessage.textContent =
-      "아직 환경 실천 기능이 완성되지 않았습니다. MISSION.md를 확인하세요.";
+    const action = button.dataset.action;
+    const points = Number(button.dataset.points);
 
-    // TODO: 이 부분에 환경 실천 기능을 작성하세요.
+    const previousStageIndex = getCurrentStageIndex();
+
+    ecoScore += points;
+    actionCount += 1;
+
+    records.unshift({
+      action: action,
+      points: points
+    });
+
+    render();
+
+    statusMessage.textContent =
+      `${action} 실천 완료! 에코 점수 ${points}점을 얻었습니다.`;
+
+    const currentStageIndex = getCurrentStageIndex();
+
+    if (currentStageIndex !== previousStageIndex) {
+      playEvolutionAnimation();
+    } else {
+      playBounceAnimation();
+    }
+
   });
 });
 

@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #22a06b;
-  --primary-dark: #116149;
+  --primary-color: #3c814f;
+  --primary-dark: #3f995c;
   --primary-light: #dff8eb;
 
-  --accent-color: #ffca5c;
+  --accent-color: #aed19e;
   --accent-dark: #875c00;
 
   --background-color: #edf8f2;
@@ -72,9 +72,9 @@ button:focus-visible {
     ),
     linear-gradient(
       135deg,
-      #0d6647,
-      #22a06b 58%,
-      #5cc98d
+      #a6c99f,
+      #688a7c 58%,
+      #7cb093
     );
 }
 
